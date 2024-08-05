@@ -25,7 +25,8 @@ def about_view(request, *args, **kwargs):
         "page_visit_count": page_qs.count(),
         "percent": percent,
         "total_visit_count": qs.count(),
-        "name": name,        
+        "name": name,
+        "debug": os.environ.get("DEBUG"),     
     }
     path = request.path
     html_template = "home.html"
