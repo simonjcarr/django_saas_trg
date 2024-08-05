@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import pathlib
 from visits.models import PageVisit
+import os
 
 this_dir = pathlib.Path(__file__).resolve().parent
 
@@ -11,6 +12,7 @@ def home_view(request, *args, **kwargs):
 
 
 def about_view(request, *args, **kwargs):
+    name = os.getenv("NAME", "no name given")
     qs = PageVisit.objects.all()
     page_qs = PageVisit.objects.filter(path=request.path)
     try:
@@ -23,6 +25,7 @@ def about_view(request, *args, **kwargs):
         "page_visit_count": page_qs.count(),
         "percent": percent,
         "total_visit_count": qs.count(),
+        "name": name,        
     }
     path = request.path
     html_template = "home.html"
