@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".railway.app",
+    "saas.soxprox.com",
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
