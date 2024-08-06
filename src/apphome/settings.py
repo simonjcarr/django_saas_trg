@@ -31,6 +31,7 @@ DEBUG = config("DJANGO_DEBUG", cast=bool)
 ALLOWED_HOSTS = [
     ".railway.app",
     "saas.soxprox.com",
+    "another-saas.soxprox.com",
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
