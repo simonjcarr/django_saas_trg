@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     ".railway.app",
     "saas.soxprox.com",
     "another-saas.soxprox.com",
+    "saas-dev.soxprox.com",
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
