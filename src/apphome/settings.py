@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "saas.soxprox.com",
     "another-saas.soxprox.com",
     "saas-dev.soxprox.com",
+    "saas-apps01.soxprox.com"
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
