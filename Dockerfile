@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libcairo2 \
     gcc \
+    curl \
+    wget \
     && rm -rf /var/lib/app/lists/*
 
 RUN mkdir -p /code
