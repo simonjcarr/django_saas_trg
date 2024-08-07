@@ -30,6 +30,12 @@ COPY ./src /code
 
 RUN pip install -r /tmp/requirements.txt
 
+RUN python manage.py vendor_pull
+RUN python manage.py collectstatic --no-input
+
+# whitenoise
+
+
 ARG PROJ_NAME="apphome"
 
 RUN printf "#!/bin/bash\n" > ./paracord_runner.sh && \
