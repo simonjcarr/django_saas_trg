@@ -28,13 +28,12 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # DEBUG = str(os.environ.get("DJANGO_DEBUG", True)).lower() == "true"
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 
-print("DEBUG:", DEBUG, type(DEBUG))
-
 ALLOWED_HOSTS = [
     ".railway.app",
     "saas.soxprox.com",
     "another-saas.soxprox.com",
     "saas-dev.soxprox.com",
+    "saas-apps01.soxprox.com"
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
@@ -99,6 +98,18 @@ DATABASES = {
     }
 }
 
+CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=30)
+DATABASE_URL = config("DATABASE_URL",  cast=str)
+
+if DATABASE_URL is not None:
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=CONN_MAX_AGE,
+            conn_health_checks=True
+        )
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -135,6 +146,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source(s) for python manage.py collectstatic
+
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR,
+]
+
+# Output for python manage.py collectstatic
+# local cdn
+
+STATIC_ROOT = BASE_DIR / "local-cdn"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

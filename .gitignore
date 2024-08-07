@@ -1,3 +1,9 @@
+# Ignore vendor static files
+src/staticfiles/vendors
+
+# Ignore local cdn files
+local-cdn
+
 venv/
 .idea
 .DS_STORE
